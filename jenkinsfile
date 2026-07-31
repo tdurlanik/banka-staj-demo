@@ -1,0 +1,22 @@
+pipeline {
+    agent any
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+        stage('Test') {
+            steps {
+                // Az önce oluşturduğumuz sahte test dosyasını çalıştırıyoruz
+                sh './test_script.sh'
+            }
+        }
+        stage('Build') {
+            steps {
+                echo 'Testler gecti! Derleme (Build) islemi basliyor...'
+                // Gerçek bir proje olsaydı buraya ./gradlew assembleDebug yazardık
+            }
+        }
+    }
+}
